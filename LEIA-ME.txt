@@ -110,3 +110,18 @@ Esses módulos estão documentados no roadmap e dependem de decisões e serviço
 * Removido o cardápio pessoal pré-configurado; diário alimentar, receitas, metas e cadastro de alimentos continuam disponíveis.
 * Removidos os vídeos de execução, seus botões e referências nas telas, além dos arquivos MP4 e da dependência video_player.
 * Vídeos poderão ser reintroduzidos futuramente após edição e validação de direitos de uso comercial.
+
+FASE 2 - PRIMEIRA IMPLEMENTACAO DO MOVIX PRO
+
+- Os programas marcados com "premium: true" em assets/programas.json agora
+  aparecem identificados como MOVIX PRO e com cadeado.
+- A abertura de um programa Premium direciona para a apresentacao do Movix Pro.
+- O onboarding tambem impede aplicar diretamente um programa Premium.
+- A tela Pro apresenta os beneficios planejados e informa claramente que
+  nenhuma cobranca esta ativa nesta versao.
+- Os tres programas marcados como gratuitos continuam acessiveis normalmente.
+
+IMPORTANTE: a integracao de cobranca ainda nao foi ativada. Ela depende do
+cadastro dos produtos mensal e anual no Google Play Console, dos respectivos
+IDs de produto e dos testes de compra/renovacao/restauracao. Nao alterar o
+estado Premium para liberar acesso pago antes de implementar a validacao.

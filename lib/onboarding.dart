@@ -106,6 +106,11 @@ class _OnbEstado extends State<OnboardingTela> {
   }
 
   Future<void> _usar(Programa p) async {
+    if (p.premium) {
+      await Navigator.push(context,
+          MaterialPageRoute(builder: (_) => MovixProTela(programa: p)));
+      return;
+    }
     final nav = Navigator.of(context);
     final m = ScaffoldMessenger.of(context);
     await app.salvarPlano(p.comoPlano());
@@ -329,7 +334,7 @@ class _OnbEstado extends State<OnboardingTela> {
         FilledButton(
           style: estiloPrimario,
           onPressed: () => _usar(p),
-          child: const Text('Usar este programa'),
+          child: Text(p.premium ? 'Conhecer o Movix Pro' : 'Usar este programa'),
         ),
         const SizedBox(height: 8),
         OutlinedButton(

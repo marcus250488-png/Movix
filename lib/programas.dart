@@ -5,7 +5,7 @@ import 'state.dart';
 import 'telas.dart';
 
 /// Programas de treino prontos (assets/programas.json).
-/// O campo `premium` já existe nos dados para a Fase 2 (assinatura); por enquanto todos abrem.
+/// Programas marcados como premium exigem acesso Movix Pro.
 class ProgramaItem {
   final String exId;
   final int series;
@@ -217,13 +217,20 @@ class _ProgramasEstado extends State<ProgramasTela> {
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (_) => ProgramaDetalheTela(programa: p))),
+                            builder: (_) => p.premium
+                                ? MovixProTela(programa: p)
+                                : ProgramaDetalheTela(programa: p))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
                             Expanded(child: Text(p.nome, style: titulo(28))),
+                            if (p.premium)
+                              const Padding(
+                                padding: EdgeInsets.only(right: 8),
+                                child: Icon(Icons.lock, color: kBege, size: 18),
+                              ),
                             const Icon(Icons.chevron_right, color: kMudo),
                           ],
                         ),
@@ -231,6 +238,7 @@ class _ProgramasEstado extends State<ProgramasTela> {
                         Text(p.objetivo,
                             style: const TextStyle(color: kMudo)),
                         Wrap(children: [
+                          if (p.premium) _tag('MOVIX PRO'),
                           _tag(p.nivel),
                           _tag('${p.diasSemana} dias por semana'),
                           _tag(p.equipamento),
@@ -247,11 +255,159 @@ class _ProgramasEstado extends State<ProgramasTela> {
   }
 }
 
+/// Apresentação do plano Pro. A compra só será habilitada quando os produtos
+/// forem cadastrados e configurados no Google Play Console.
+class MovixProTela extends StatelessWidget {
+  final Programa? programa;
+  const MovixProTela({super.key, this.programa});
+
+  Widget _beneficio(IconData icon, String titulo, String descricao) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 9),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, color: kBege, size: 23),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(titulo, style: const TextStyle(fontWeight: FontWeight.w700)),
+                const SizedBox(height: 3),
+                Text(descricao, style: const TextStyle(color: kMudo, height: 1.3)),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Conheça o Movix Pro', style: titulo(27)),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, size: 20),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.fromLTRB(18, 8, 18, 36),
+        children: [
+          Vidro(
+            padding: const EdgeInsets.all(22),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.workspace_premium, color: kBege, size: 42),
+                const SizedBox(height: 12),
+                Text('Evolua com o Movix Pro', style: titulo(34)),
+                const SizedBox(height: 8),
+                const Text(
+                  'Tenha acesso a programas exclusivos e, conforme forem liberados, ferramentas avançadas para acompanhar seu desempenho.',
+                  style: TextStyle(color: kMudo, height: 1.4),
+                ),
+                if (programa != null) ...[
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.all(13),
+                    decoration: BoxDecoration(
+                      color: kPrimaria.withOpacity(.16),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: kPrimaria.withOpacity(.45)),
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.lock, color: kBege),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            '"${programa!.nome}" é um programa exclusivo do Pro.',
+                            style: const TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          Vidro(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('O que está incluído', style: titulo(25)),
+                _beneficio(Icons.fitness_center, 'Programas exclusivos',
+                    'Planos de treino identificados como Movix Pro.'),
+                _beneficio(Icons.insights, 'Análises avançadas',
+                    'Recursos avançados de desempenho previstos para a versão Pro.'),
+                _beneficio(Icons.query_stats, 'Relatórios avançados',
+                    'Acompanhamento ampliado da sua evolução, conforme os recursos forem disponibilizados.'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          Vidro(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Planos', style: titulo(25)),
+                const SizedBox(height: 8),
+                const Text('Mensal', style: TextStyle(fontWeight: FontWeight.w700)),
+                const Text('Preço informado pela Google Play quando a assinatura for ativada.',
+                    style: TextStyle(color: kMudo, height: 1.35)),
+                const Divider(height: 24, color: Colors.white24),
+                const Text('Anual', style: TextStyle(fontWeight: FontWeight.w700)),
+                const Text('Preço informado pela Google Play quando a assinatura for ativada.',
+                    style: TextStyle(color: kMudo, height: 1.35)),
+              ],
+            ),
+          ),
+          const SizedBox(height: 14),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: branco(.05),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: branco(.12)),
+            ),
+            child: const Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(Icons.info_outline, color: kBege),
+                SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    'As assinaturas ainda não estão disponíveis nesta versão. Nenhuma cobrança será feita. A compra será ativada após configurar e testar os produtos no Google Play Console.',
+                    style: TextStyle(color: kMudo, height: 1.4),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class ProgramaDetalheTela extends StatelessWidget {
   final Programa programa;
   const ProgramaDetalheTela({super.key, required this.programa});
 
   Future<void> _usar(BuildContext context) async {
+    if (programa.premium) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (_) => MovixProTela(programa: programa)));
+      return;
+    }
     final messenger = ScaffoldMessenger.of(context);
     final nav = Navigator.of(context);
     if (app.plano.isNotEmpty) {
@@ -286,6 +442,7 @@ class ProgramaDetalheTela extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (programa.premium) return MovixProTela(programa: programa);
     return Scaffold(
       appBar: AppBar(
         title: Text(programa.nome, style: titulo(26)),
