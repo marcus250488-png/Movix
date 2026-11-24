@@ -8,6 +8,7 @@ import 'passos.dart';
 import 'calculadoras.dart';
 import 'programas.dart';
 import 'sessao_detalhe.dart';
+import 'legal.dart';
 
 // ---------- Utilidades ----------
 String _d2(int n) => n.toString().padLeft(2, '0');
@@ -446,6 +447,9 @@ class MaisTela extends StatelessWidget {
               _item(Icons.privacy_tip_outlined, 'Privacidade e dados',
                   'O que fica salvo e exportação',
                   () => _abrir(context, const PrivacidadeTela())),
+              _item(Icons.description_outlined, 'Termos, privacidade e saúde',
+                  'Documentos e orientações do Movix',
+                  () => _abrir(context, const DocumentosMovixTela())),
             ],
           ),
         );
@@ -559,7 +563,15 @@ class PrivacidadeTela extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.w700)),
                 SizedBox(height: 6),
                 Text(
-                  'O uso é local e não exige cadastro. A sincronização em nuvem e o login serão avaliados em uma atualização futura. Use Exportar meus dados para manter uma cópia de segurança.',
+                  'O uso é local e não exige cadastro. A sincronização em nuvem e o login serão avaliados em uma atualização futura. Os registros locais usam o armazenamento do aplicativo e não são criptografados individualmente nesta versão. A cópia automática Android foi desativada; use Exportar meus dados para guardar uma cópia em local seguro.',
+                  style: TextStyle(color: kMudo),
+                ),
+                SizedBox(height: 14),
+                Text('Serviços externos opcionais',
+                    style: TextStyle(fontWeight: FontWeight.w700)),
+                SizedBox(height: 6),
+                Text(
+                  'A busca de alimentos envia o termo pesquisado ao Open Food Facts. A busca de academias próximas usa sua localização para consultar o Overpass/OpenStreetMap. Essas funções só são usadas quando você as solicita.',
                   style: TextStyle(color: kMudo),
                 ),
                 SizedBox(height: 14),
@@ -572,6 +584,13 @@ class PrivacidadeTela extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          const SizedBox(height: 10),
+          OutlinedButton.icon(
+            style: estiloContorno,
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const DocumentosMovixTela())),
+            icon: const Icon(Icons.description_outlined),
+            label: const Text('Termos, privacidade e saúde'),
           ),
           const SizedBox(height: 16),
           OutlinedButton.icon(

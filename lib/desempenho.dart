@@ -4,6 +4,7 @@ import 'extras.dart' show fmtTempo, fmtNum, fmtDataIso;
 import 'state.dart';
 import 'telas.dart';
 import 'avisos.dart';
+import 'pro.dart';
 
 // ============================================================
 // Seu desempenho — dados, resumo semanal e tela completa
@@ -572,10 +573,12 @@ class _DesempenhoEstado extends State<DesempenhoTela> {
   String aba = 'musculos'; // musculos | volume
   String? sel;
 
-  void _abrirCompleto([String tipo = 'semana']) {
+  void _abrirCompleto() {
+    // O resumo semanal permanece gratuito; análises históricas detalhadas
+    // ficam identificadas como recurso Pro até existir ativação de assinatura.
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => DesempenhoDetalheTela(tipoInicial: tipo)),
+      MaterialPageRoute(builder: (_) => const MovixProTela()),
     );
   }
 
@@ -640,7 +643,7 @@ class _DesempenhoEstado extends State<DesempenhoTela> {
                         IconButton(
                           icon: const Icon(Icons.calendar_today_outlined,
                               size: 20, color: kMudo),
-                          onPressed: () => _abrirCompleto('mes'),
+                          onPressed: _abrirCompleto,
                         ),
                       ],
                     ),
@@ -706,15 +709,15 @@ class _DesempenhoEstado extends State<DesempenhoTela> {
                 ),
               ),
               const SizedBox(height: 16),
-              _botao(Icons.emoji_events_outlined, 'Detalhes da intensidade muscular',
+              _botao(Icons.lock_outline, 'PRO · Detalhes da intensidade muscular',
                   () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const DetalhesIntensidadeTela()),
+                  MaterialPageRoute(builder: (_) => const MovixProTela()),
                 );
               }),
               const SizedBox(height: 10),
-              _botao(Icons.insights_rounded, 'Desempenho completo', _abrirCompleto),
+              _botao(Icons.lock_outline, 'PRO · Desempenho completo', _abrirCompleto),
             ],
           ),
         );

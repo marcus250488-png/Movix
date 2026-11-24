@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'state.dart';
 import 'telas.dart';
 import 'programas.dart';
+import 'pro.dart';
 
 const _kFeito = 'movix_onb_feito';
 
@@ -108,7 +109,7 @@ class _OnbEstado extends State<OnboardingTela> {
   Future<void> _usar(Programa p) async {
     if (p.premium) {
       await Navigator.push(context,
-          MaterialPageRoute(builder: (_) => MovixProTela(programa: p)));
+          MaterialPageRoute(builder: (_) => MovixProTela(programaNome: p.nome)));
       return;
     }
     final nav = Navigator.of(context);

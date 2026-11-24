@@ -138,3 +138,15 @@ ATUALIZAÇÃO — SPLASH NATIVA MOVIX
 - A inicialização local agora começa depois do primeiro frame, para exibir a splash enquanto SharedPreferences e os arquivos JSON são carregados.
 - A splash permanece por no mínimo 2,6 segundos e aguarda o carregamento real antes de sair.
 - A abertura nativa Android usa fundo em degradê e o ícone do aplicativo.
+
+
+--- FASES 2 E 3 — PACOTE CONSOLIDADO DE DESENVOLVIMENTO ---
+- Splash Flutter animada permanece como abertura visual única; a splash nativa Android fica sem ícone para evitar duas marcas em sequência.
+- Programas gratuitos continuam disponíveis; programas premium levam à apresentação Movix Pro.
+- Resumo semanal de desempenho continua gratuito; relatórios detalhados e intensidade avançada estão identificados como Pro.
+- A tela Pro informa que não há contratação nem cobrança ativa. Google Play Billing e publicação foram deliberadamente adiados.
+- Menu Mais > Termos, privacidade e saúde reúne documentos informativos em revisão.
+- Minutas completas estão em docs/legal/. Preencher identificação e contato do responsável e revisar juridicamente antes de distribuição pública.
+- O armazenamento SharedPreferences não é criptografado individualmente nesta versão. O backup automático Android foi desativado; usar exportação JSON para cópia manual.
+- Permissões de atividade física e localização são usadas apenas nas funções correspondentes; localização é solicitada no fluxo de busca de academias.
+- Antes de considerar as Fases 2 e 3 finalizadas, executar flutter analyze, flutter build apk --debug e os testes funcionais descritos em docs/FASE_2_E_3_STATUS.md.

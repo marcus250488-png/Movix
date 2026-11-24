@@ -34,7 +34,7 @@ Future<List<ResultadoOnline>> _consultar(String host, String q) async {
     'fields': 'product_name,brands,nutriments,serving_quantity',
   });
   final r = await http.get(uri, headers: {
-    'User-Agent': 'MeuTreino/1.0 (app pessoal de treino)',
+    'User-Agent': 'Movix/0.1 (app de treino)',
   }).timeout(const Duration(seconds: 10));
   if (r.statusCode != 200) throw Exception('Erro ${r.statusCode}');
   final j = jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>;
