@@ -55,9 +55,6 @@ class _Pill extends StatelessWidget {
 String _macrosTexto(Macros m) =>
     '${fmtD(m.kcal)} kcal • P ${fmtD(m.p)} • C ${fmtD(m.c)} • G ${fmtD(m.g)}';
 
-Refeicao _refPorId(String id) =>
-    kRefeicoes.firstWhere((r) => r.id == id, orElse: () => kRefeicoes.last);
-
 // ============================================================
 // Tela principal da aba Nutrição
 // ============================================================
@@ -119,19 +116,8 @@ class _NutricaoEstado extends State<NutricaoTela> {
               const SizedBox(height: 14),
               _receitasCard(),
               const SizedBox(height: 14),
-              Row(
-                children: [
-                  Expanded(
-                    child: _atalho(Icons.menu_book_outlined, 'Meu cardápio',
-                        'Monte suas refeições fixas', const CardapioTela()),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _atalho(Icons.egg_alt_outlined, 'Meus alimentos',
-                        'Ver e editar macros', const BuscarAlimentoTela()),
-                  ),
-                ],
-              ),
+              _atalho(Icons.egg_alt_outlined, 'Meus alimentos',
+                  'Ver e editar macros', const BuscarAlimentoTela()),
             ],
           );
         },
@@ -714,7 +700,7 @@ class RefeicaoTela extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 24),
                   child: Text(
-                    'Nada registrado aqui ainda. Adicione alimentos, receitas ou use o seu cardápio.',
+                    'Nada registrado aqui ainda. Adicione alimentos ou receitas para começar.',
                     textAlign: TextAlign.center,
                     style: TextStyle(color: kMudo),
                   ),
@@ -750,24 +736,6 @@ class RefeicaoTela extends StatelessWidget {
                 },
                 icon: const Icon(Icons.restaurant),
                 label: const Text('Adicionar receita'),
-              ),
-              const SizedBox(height: 10),
-              OutlinedButton.icon(
-                style: estiloContorno,
-                onPressed: app.entradasCardapio(refId).isEmpty
-                    ? null
-                    : () async {
-                        await app.usarCardapio(_k, refId);
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Cardápio adicionado!')));
-                        }
-                      },
-                icon: const Icon(Icons.menu_book_outlined),
-                label: Text(app.entradasCardapio(refId).isEmpty
-                    ? 'Usar meu cardápio (vazio)'
-                    : 'Usar meu cardápio'),
               ),
             ],
           );
@@ -1754,182 +1722,6 @@ class _ReceitaDetalheEstado extends State<ReceitaDetalheTela> {
       );
 }
 
-// ============================================================
-// Meu cardápio (refeições fixas)
-// ============================================================
-class CardapioTela extends StatefulWidget {
-  const CardapioTela({super.key});
-
-  @override
-  State<CardapioTela> createState() => _CardapioTelaEstado();
-}
-
-class _CardapioTelaEstado extends State<CardapioTela> {
-  @override
-  void initState() {
-    super.initState();
-    app.carregarCardapioPadrao();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Meu cardápio', style: titulo(28))),
-      body: ListenableBuilder(
-        listenable: app,
-        builder: (context, _) {
-          return ListView(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 40),
-            children: [
-              Vidro(
-                padding: const EdgeInsets.all(16),
-                raio: 20,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(children: [
-                      const Icon(Icons.track_changes, color: kPrimaria),
-                      const SizedBox(width: 8),
-                      Text('Plano alimentar sugerido', style: titulo(19)),
-                    ]),
-                    const SizedBox(height: 6),
-                    const Text(
-                      'Cardápio inicial configurado para cerca de 2.500 kcal/dia, distribuído em cinco refeições principais. A seção Outros fica disponível para extras. As quantidades são editáveis e os macros são calculados pelos alimentos cadastrados.',
-                      style: TextStyle(color: kMudo, height: 1.35),
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Treino às 6h • Café da manhã às 7h30 (pós-treino). Toque em um alimento para ajustar a quantidade ou no X para removê-lo.',
-                      style: TextStyle(color: kMudo, fontSize: 12, height: 1.35),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 14),
-              for (final r in kRefeicoes) _secao(context, r),
-            ],
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _secao(BuildContext context, Refeicao r) {
-    final itens = app.entradasCardapio(r.id);
-    final tot = app.totalCardapio(r.id);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
-      child: Vidro(
-        padding: const EdgeInsets.all(16),
-        raio: 24,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  width: 12,
-                  height: 12,
-                  decoration: BoxDecoration(color: r.cor, shape: BoxShape.circle),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(r.nome, style: titulo(24)),
-                      if (r.horario.isNotEmpty)
-                        Text(r.horario, style: const TextStyle(color: kMudo, fontSize: 11)),
-                    ],
-                  ),
-                ),
-                Text('${fmtD(tot.kcal)} kcal',
-                    style: const TextStyle(color: kMudo)),
-              ],
-            ),
-            if (itens.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 2, bottom: 6),
-                child: Text(
-                    'P ${fmtD(tot.p)} g • C ${fmtD(tot.c)} g • G ${fmtD(tot.g)} g',
-                    style: const TextStyle(color: kMudo, fontSize: 12)),
-              ),
-            for (var i = 0; i < itens.length; i++)
-              InkWell(
-                borderRadius: BorderRadius.circular(12),
-                onTap: () async {
-                  final q = await pedirQuantidadeEntrada(context, itens[i]);
-                  if (q != null) await app.setQtdCardapio(r.id, i, q);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 6),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(app.nomeEntrada(itens[i])),
-                            Text(
-                                '${app.qtdEntrada(itens[i])} • ${fmtD(app.macrosEntrada(itens[i]).kcal)} kcal',
-                                style: const TextStyle(
-                                    color: kMudo, fontSize: 12)),
-                          ],
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () => app.removerCardapio(r.id, i),
-                        icon: const Icon(Icons.close, color: Colors.redAccent),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            const SizedBox(height: 6),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton.icon(
-                    style: estiloContorno,
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => BuscarAlimentoTela(
-                          titulo: 'Cardápio: ${r.nome}',
-                          onAdd: (e) => app.addCardapio(r.id, e),
-                        ),
-                      ),
-                    ),
-                    icon: const Icon(Icons.add, size: 18),
-                    label: const Text('Alimento'),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: OutlinedButton.icon(
-                    style: estiloContorno,
-                    onPressed: () async {
-                      final e = await Navigator.push<Map<String, dynamic>>(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ReceitasTela(
-                              dia: DateTime.now(), selecionar: true),
-                        ),
-                      );
-                      if (e != null) await app.addCardapio(r.id, e);
-                    },
-                    icon: const Icon(Icons.restaurant, size: 18),
-                    label: const Text('Receita'),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 // ============================================================
 // Meus dados e metas (TMB)

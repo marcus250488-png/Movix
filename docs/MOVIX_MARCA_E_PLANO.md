@@ -8,12 +8,12 @@
 ## Fases
 0. Base: nome, pacote, identidade e licenças das mídias/Syncfusion; Firebase foi adiado para a fase de nuvem  ← em andamento
 1. Produto grátis: onboarding, programas prontos, anilhas/1RM, CSV, animações
-2. Premium: limites grátis x Pro + Google Play Billing (teste de 7 dias, mensal e anual)
+2. Premium: limites grátis x Pro + Google Play Billing (teste de 7 dias, mensal e anual). Antes da monetização, limpar conteúdo pessoal e remover vídeos de exercícios até revisão/licenciamento das mídias.
 3. Publicação: termos, política de privacidade, declaração de saúde, testes fechados
 4. Login Google + nuvem, Health Connect, widget, IA
 
 ## Pendências do dono
 - Criar keystore NOVO (movix.jks) e segredos KEYSTORE_BASE64 / KEYSTORE_PASSWORD no GitHub
 - Criar projeto Firebase novo e preencher lib/firebase_config.dart somente na fase de nuvem (após estabilização e Premium)
-- Conferir direitos de uso de vídeos/fotos (assets/) e licença do Syncfusion
+- Vídeos de execução removidos do app nesta etapa; só voltarão após edição e confirmação dos direitos comerciais. Conferir direitos das fotos (assets/) e licença do Syncfusion
 - Checar nome "Movix" na Play Store e no INPI

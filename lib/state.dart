@@ -443,7 +443,6 @@ class AppState extends ChangeNotifier {
   Map<String, dynamic> exOver = {};
   Map<String, dynamic> perfil = {};
   Map<String, dynamic> diario = {}; // dia -> refeição -> [entradas]
-  Map<String, dynamic> cardapio = {}; // refeição -> [entradas]
 
   // Conta/nuvem reservadas para a fase futura de sincronização.
   final GoogleSignIn _g =
@@ -567,6 +566,7 @@ class AppState extends ChangeNotifier {
     pulouLogin = true;
     _pre = '';
     _carregarLocal();
+    await _p.remove(_k('cardapio')); // remove dados pessoais do antigo cardápio
     // Padrão ligado; uma vez, força ligado também para quem já tinha desligado.
     if (_p.getBool(_k('manter_tela_v2')) == null) {
       manterTela = true;
@@ -603,7 +603,6 @@ class AppState extends ChangeNotifier {
         'alim_custom': _p.getString(_k('alim_custom')),
         'perfil': _p.getString(_k('perfil')),
         'diario': _p.getString(_k('diario')),
-        'cardapio': _p.getString(_k('cardapio')),
         'passos': _p.getString(_k('passos')),
         'passos_meta': _p.getInt(_k('passos_meta')),
         'xp': _p.getString(_k('xp')),
@@ -630,7 +629,6 @@ class AppState extends ChangeNotifier {
             alimentos.where((a) => a.custom).map((a) => a.toJson()).toList()),
         'perfil': jsonEncode(perfil),
         'diario': jsonEncode(diario),
-        'cardapio': jsonEncode(cardapio),
         'passos': jsonEncode(passos),
         'passos_meta': metaPassos,
         'xp': jsonEncode(xpLog),
@@ -654,7 +652,6 @@ class AppState extends ChangeNotifier {
     alimOver = Map<String, dynamic>.from(_mapa(d['alim_over']));
     perfil = Map<String, dynamic>.from(_mapa(d['perfil']));
     diario = Map<String, dynamic>.from(_mapa(d['diario']));
-    cardapio = Map<String, dynamic>.from(_mapa(d['cardapio']));
     passos = Map<String, int>.from(
         _mapa(d['passos']).map((k, v) => MapEntry('$k', (v as num).toInt())));
     metaPassos = (d['passos_meta'] as num?)?.toInt() ?? 10000;
@@ -740,7 +737,6 @@ class AppState extends ChangeNotifier {
     await _p.setString(_k('alim_custom'), m['alim_custom'] as String);
     await _p.setString(_k('perfil'), m['perfil'] as String);
     await _p.setString(_k('diario'), m['diario'] as String);
-    await _p.setString(_k('cardapio'), m['cardapio'] as String);
     await _p.setString(_k('passos'), m['passos'] as String);
     await _p.setInt(_k('passos_meta'), metaPassos);
     await _p.setString(_k('xp'), m['xp'] as String);
@@ -814,7 +810,7 @@ class AppState extends ChangeNotifier {
     const chaves = [
       'plano', 'custom', 'feitos', 'inicio_plano', 'descanso', 'meta_agua',
       'meta_peso', 'sessoes', 'avaliacoes', 'agua', 'obs', 'cargas',
-      'ex_over', 'alim_over', 'alim_custom', 'perfil', 'diario', 'cardapio'
+      'ex_over', 'alim_over', 'alim_custom', 'perfil', 'diario'
     ];
     final temLegado = _p.getString('plano') != null ||
         _p.getString('sessoes') != null ||
@@ -879,9 +875,6 @@ class AppState extends ChangeNotifier {
       }
       if (m['diario'] is Map) {
         diario = Map<String, dynamic>.from(m['diario'] as Map);
-      }
-      if (m['cardapio'] is Map) {
-        cardapio = Map<String, dynamic>.from(m['cardapio'] as Map);
       }
       if (m['alimentos_editados'] is Map) {
         alimOver = Map<String, dynamic>.from(m['alimentos_editados'] as Map);
@@ -1069,7 +1062,6 @@ class AppState extends ChangeNotifier {
 
   Future<void> _salvarNutri() async {
     await _p.setString(_k('diario'), jsonEncode(diario));
-    await _p.setString(_k('cardapio'), jsonEncode(cardapio));
     notifyListeners();
   }
 
@@ -1087,103 +1079,6 @@ class AppState extends ChangeNotifier {
   Future<void> setQtdEntrada(String dia, String ref, int i, double q) async {
     final l = _listaDia(dia, ref);
     if (i >= 0 && i < l.length) (l[i] as Map)['q'] = q;
-    await _salvarNutri();
-  }
-
-  /// Preenche o cardápio inicial do usuário apenas na primeira vez.
-  /// Se já houver qualquer refeição salva, preserva integralmente as escolhas existentes.
-  Future<void> carregarCardapioPadrao() async {
-    // Instalação nova: cria as cinco refeições completas.
-    if (cardapio.isEmpty) {
-      cardapio = {
-      'cafe': [
-        {'t': 'a', 'id': 'f_ovo_mexido', 'q': 110.0},
-        {'t': 'a', 'id': 'f_pao_frances', 'q': 50.0},
-        {'t': 'a', 'id': 'f_leite_integral', 'q': 200.0},
-        {'t': 'a', 'id': 'f_banana_prata', 'q': 70.0},
-      ],
-      'almoco': [
-        {'t': 'a', 'id': 'f_arroz_branco_cozido', 'q': 150.0},
-        {'t': 'a', 'id': 'f_feijao_carioca_cozido', 'q': 100.0},
-        {'t': 'a', 'id': 'f_peito_de_frango_grelhado', 'q': 160.0},
-        {'t': 'a', 'id': 'f_cenoura_cozida', 'q': 100.0},
-        {'t': 'a', 'id': 'f_azeite_de_oliva', 'q': 5.0},
-      ],
-      'cafe_tarde': [
-        {'t': 'a', 'id': 'f_ovo_mexido', 'q': 110.0},
-        {'t': 'a', 'id': 'f_pao_frances', 'q': 50.0},
-        {'t': 'a', 'id': 'f_leite_integral', 'q': 200.0},
-        {'t': 'a', 'id': 'f_maca_com_casca', 'q': 150.0},
-      ],
-      'lanche': [
-        {'t': 'a', 'id': 'f_pao_frances', 'q': 40.0},
-        {'t': 'a', 'id': 'f_leite_integral', 'q': 150.0},
-        {'t': 'a', 'id': 'f_banana_prata', 'q': 70.0},
-      ],
-      'jantar': [
-        {'t': 'a', 'id': 'f_arroz_branco_cozido', 'q': 100.0},
-        {'t': 'a', 'id': 'f_feijao_carioca_cozido', 'q': 80.0},
-        {'t': 'a', 'id': 'f_carne_moida_patinho_cozida', 'q': 120.0},
-        {'t': 'a', 'id': 'f_cenoura_cozida', 'q': 100.0},
-        {'t': 'a', 'id': 'f_azeite_de_oliva', 'q': 3.0},
-      ],
-        'outros': <dynamic>[],
-      };
-      await _salvarNutri();
-      return;
-    }
-
-    // Atualização de versão: adiciona somente a nova refeição, sem apagar
-    // ou mover alimentos que o usuário já cadastrou nas demais refeições.
-    if (!cardapio.containsKey('cafe_tarde')) {
-      cardapio['cafe_tarde'] = [
-        {'t': 'a', 'id': 'f_ovo_mexido', 'q': 110.0},
-        {'t': 'a', 'id': 'f_pao_frances', 'q': 50.0},
-        {'t': 'a', 'id': 'f_leite_integral', 'q': 200.0},
-        {'t': 'a', 'id': 'f_maca_com_casca', 'q': 150.0},
-      ];
-      cardapio['outros'] ??= <dynamic>[];
-      await _salvarNutri();
-    }
-  }
-
-  List<dynamic> _listaCardapio(String ref) =>
-      (cardapio[ref] ??= <dynamic>[]) as List<dynamic>;
-
-  List<Map> entradasCardapio(String ref) {
-    final l = cardapio[ref];
-    return l is List ? l.map((e) => e as Map).toList() : <Map>[];
-  }
-
-  Macros totalCardapio(String ref) {
-    var t = const Macros();
-    for (final e in entradasCardapio(ref)) {
-      t = t + macrosEntrada(e);
-    }
-    return t;
-  }
-
-  Future<void> addCardapio(String ref, Map<String, dynamic> e) async {
-    _listaCardapio(ref).add(e);
-    await _salvarNutri();
-  }
-
-  Future<void> removerCardapio(String ref, int i) async {
-    final l = _listaCardapio(ref);
-    if (i >= 0 && i < l.length) l.removeAt(i);
-    await _salvarNutri();
-  }
-
-  Future<void> setQtdCardapio(String ref, int i, double q) async {
-    final l = _listaCardapio(ref);
-    if (i >= 0 && i < l.length) (l[i] as Map)['q'] = q;
-    await _salvarNutri();
-  }
-
-  Future<void> usarCardapio(String dia, String ref) async {
-    for (final e in entradasCardapio(ref)) {
-      _listaDia(dia, ref).add(Map<String, dynamic>.from(e));
-    }
     await _salvarNutri();
   }
 
@@ -1858,7 +1753,6 @@ class AppState extends ChangeNotifier {
         'ajustes': ajustes,
         'perfil': perfil,
         'diario': diario,
-        'cardapio': cardapio,
         'alimentos_proprios':
             alimentos.where((a) => a.custom).map((a) => a.toJson()).toList(),
         'alimentos_editados': alimOver,

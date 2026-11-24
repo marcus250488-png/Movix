@@ -101,11 +101,11 @@ class Refeicao {
 }
 
 const kRefeicoes = <Refeicao>[
-  Refeicao('cafe', 'Café da manhã', 0.20, Color(0xFF4FFBA5), 'assets/nutri/cafe.jpg', horario: '7h30 • pós-treino'),
-  Refeicao('almoco', 'Almoço', 0.24, Color(0xFFFA9D50), 'assets/nutri/almoco.jpg', horario: '11h30'),
-  Refeicao('cafe_tarde', 'Café da tarde', 0.22, Color(0xFFFB507C), 'assets/nutri/lanche.jpg', horario: '15h'),
-  Refeicao('lanche', 'Lanche da tarde', 0.12, Color(0xFFB66CFF), 'assets/nutri/lanche.jpg', horario: '17h30'),
-  Refeicao('jantar', 'Jantar', 0.22, Color(0xFFFAD24F), 'assets/nutri/jantar.jpg', horario: '20h30'),
+  Refeicao('cafe', 'Café da manhã', 0.20, Color(0xFF4FFBA5), 'assets/nutri/cafe.jpg'),
+  Refeicao('almoco', 'Almoço', 0.24, Color(0xFFFA9D50), 'assets/nutri/almoco.jpg'),
+  Refeicao('cafe_tarde', 'Café da tarde', 0.22, Color(0xFFFB507C), 'assets/nutri/lanche.jpg'),
+  Refeicao('lanche', 'Lanche da tarde', 0.12, Color(0xFFB66CFF), 'assets/nutri/lanche.jpg'),
+  Refeicao('jantar', 'Jantar', 0.22, Color(0xFFFAD24F), 'assets/nutri/jantar.jpg'),
   Refeicao('outros', 'Outros', 0.0, Color(0xFFB3B3B3), 'assets/nutri/outros.jpg'),
 ];
 

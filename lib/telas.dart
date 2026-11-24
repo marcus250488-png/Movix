@@ -18,7 +18,6 @@ import 'cardio.dart';
 import 'ex_edit.dart';
 import 'passos.dart';
 import 'xp.dart';
-import 'video_ex.dart';
 import 'desempenho.dart' show DesempenhoTela;
 import 'sessao_detalhe.dart';
 import 'compartilhar.dart';
@@ -1616,10 +1615,6 @@ class _DetalheExEstado extends State<_DetalheEx> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            VideoExercicio(
-                exId: it.exId,
-                nome: ex?.nome ?? it.nome,
-                abaixo: 16),
             Text(ex?.nome ?? it.nome, style: titulo(30)),
             const SizedBox(height: 6),
             Text(equip.isEmpty ? it.grupo : '${it.grupo} • $equip',
@@ -2518,12 +2513,6 @@ class _RunEstado extends State<RunTela> with WidgetsBindingObserver {
           ],
         ),
         const SizedBox(height: 14),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: BotaoVerExecucao(
-              exId: it.exId, nome: app.ex(it.exId)?.nome ?? it.nome),
-        ),
-        const SizedBox(height: 14),
         if (si + 1 >= seriesAtual && _elegivelCresc) ...[
           OutlinedButton.icon(
             style: estiloContornoFino.merge(
@@ -2816,7 +2805,6 @@ class _BibEstado extends State<BibliotecaTela> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            VideoExercicio(exId: e.id, nome: e.nome, altura: 300, abaixo: 16),
             Text(e.nome, style: titulo(30)),
             const SizedBox(height: 8),
             Text('Grupo: ${e.grupo}', style: const TextStyle(color: kMudo)),

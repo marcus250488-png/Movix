@@ -105,57 +105,8 @@ Esses módulos estão documentados no roadmap e dependem de decisões e serviço
 * Aviso com "Desfazer" depois de confirmar, e botão "Voltar o treino para este dia" na tela de descanso.
 * O ajuste fica salvo por data (e sincroniza com a nuvem); o plano semanal base não muda.
 
---- v1.11.0 ---
-* Vídeos de execução por exercício (lib/video_ex.dart): arquivo assets/videos/<id>.mp4 (sem som, 480 px).
-  - Na folha do exercício (toque no exercício do dia): vídeo em loop no topo.
-  - Na execução do treino: botão "Ver execução" abre o vídeo.
-  - Exercício sem arquivo não mostra nada. Conta feminina usa f_<id>.mp4 se existir.
-* Primeiro vídeo: elev-lateral-halter (Elevação lateral com halteres).
 
---- v1.11.1 ---
-* Segundo vídeo de execução: Elevação lateral na polia (elev-lateral-polia), na folha do exercício e na execução.
-* Exercício do treino sem id de vídeo passa a procurar vídeo pelo nome na biblioteca.
-
---- v1.11.2 ---
-* Vídeos com tamanho padrão (quadrado, recorte automático).
-* Novo vídeo: Elevação frontal na polia (elev-frontal-polia).
-
-v1.12.0: serie crescente (3-4-5-6-7 reps, 15 s de pausa, total 25) na ultima serie de exercicios de biceps, triceps, ombros e antebraco. Conta 25 reps no volume.
-
-v1.12.2: treino em andamento sobrevive a sair da tela (cronometro continua; trocar de exercicio mantem o progresso e os pulados continuam na fila).
-
-v1.12.3: treino em andamento salvo no celular e retomado ao abrir o app (mesmo se o Android fechar); cronometro por relogio real; tela ligada por padrao; pede permissao de bateria uma vez.
-
-v1.13.0: "Descanso" pulsando em branco metalico; cardio com velocidade/inclinacao da esteira ao vivo (km, kcal e ritmo calculados); tela "Ja fiz cardio" repaginada com tempo, distancia, calorias e ritmo.
-
-
---- v1.14.1 (mesclada) ---
-* Base completa da v1.13.0 com as alterações de código da v1.14.0 incorporadas:
-  histórico com o dia real do treino, nível automático (Iniciante/Intermediário/
-  Avançado) e duração do plano editável.
-* Histórico reorganizado em seções independentes: Treinos e Cardio. Os resumos
-  de tempo/volume dos treinos não misturam mais os registros de cardio; o cardio
-  tem seus próprios totais de sessões, tempo e distância.
-* Busca de alimentos com filtros Todos, Proteínas, Carboidratos, Gorduras e Frutas.
-* Biblioteca nutricional ampliada de 93 para 130 alimentos, incluindo carnes,
-  peixes, ovos, laticínios, frutas, legumes, cereais e fontes de gordura.
-* Os macros dos alimentos são exibidos por 100 g, mantendo o fluxo de quantidade
-  e edição já existente.
-
-
-VERSAO 1.14.2 - IDENTIDADE VISUAL
-- Aplicado o anel azul luminoso animado da Biblioteca nas categorias selecionadas da Alimentacao.
-- Aplicado o mesmo contorno animado nos titulos das secoes Treinos e Cardio do Historico.
-- Mantido o comportamento de selecao e filtros existentes.
-
-
-VERSAO 1.14.7
-- Tela Plano de treino permite exportar o plano semanal atual em PDF compartilhavel.
-- Exportacao usa os dias e exercicios cadastrados no momento da exportacao.
-- Biblioteca: videos dos exercicios exibidos no detalhe; adicionados 13 videos das versoes 1.14.5 e 1.14.6.
-
-
---- v1.14.8 ---
-* Corrigido o import da biblioteca Syncfusion PDF: as classes de fonte usadas na exportação agora ficam disponíveis.
-* Mantida a exportação dinâmica do plano semanal atual em PDF, lendo os dias e exercícios cadastrados no momento da exportação.
-* Mantidos os 13 vídeos adicionados nas versões 1.14.5 e 1.14.6 e os demais arquivos da base 1.14.7.
+--- Movix — limpeza da Fase 2 ---
+* Removido o cardápio pessoal pré-configurado; diário alimentar, receitas, metas e cadastro de alimentos continuam disponíveis.
+* Removidos os vídeos de execução, seus botões e referências nas telas, além dos arquivos MP4 e da dependência video_player.
+* Vídeos poderão ser reintroduzidos futuramente após edição e validação de direitos de uso comercial.
