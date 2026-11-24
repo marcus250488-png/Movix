@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'state.dart';
@@ -67,7 +68,7 @@ final estiloContorno = OutlinedButton.styleFrom(
   foregroundColor: Colors.white,
   minimumSize: const Size.fromHeight(56),
   shape: const StadiumBorder(),
-  side: const BorderSide(color: kPrimaria, width: 2),
+  side: const BorderSide(color: kPrimaria, width: 1.2),
   textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
 );
 
@@ -455,7 +456,6 @@ class _InicioEstado extends State<InicioTela> {
   }
 
   void _conta() {
-    final msg = ScaffoldMessenger.of(context);
     showModalBottomSheet(
       context: context,
       backgroundColor: kSuperf,
@@ -491,7 +491,7 @@ class _InicioEstado extends State<InicioTela> {
                     Navigator.pop(c);
                     final e = await app.entrar();
                     if (e != null) {
-                      msg.showSnackBar(SnackBar(content: Text(e)));
+                      mostrarAvisoMovix(context, SnackBar(content: Text(e)));
                     }
                   },
                   icon: const Icon(Icons.login),
@@ -1310,15 +1310,15 @@ class TreinoTela extends StatelessWidget {
     );
     if (ok != true) return;
     final antes = await app.naoFuiTreinar(hoje);
-    nav.pop();
     messenger.hideCurrentSnackBar();
-    messenger.showSnackBar(SnackBar(
+    mostrarAvisoMovix(context, SnackBar(
       content: Text('Hoje é descanso. Treino movido para ${_nomeDia(amanha).toLowerCase()}.'),
       action: SnackBarAction(
         label: 'Desfazer',
         onPressed: () => app.restaurarAjustes(antes),
       ),
     ));
+    nav.pop();
   }
 
   /// Cabeçalho do treino com a marca Movix e o resumo.
@@ -1681,7 +1681,6 @@ class _DetalheExEstado extends State<_DetalheEx> {
                   ),
                   onPressed: () async {
                     final nav = Navigator.of(context);
-                    final messenger = ScaffoldMessenger.of(context);
                     final ok = await showDialog<bool>(
                       context: context,
                       builder: (c) => AlertDialog(
@@ -1702,9 +1701,9 @@ class _DetalheExEstado extends State<_DetalheEx> {
                     final nome = app.ex(widget.it.exId)?.nome ?? widget.it.nome;
                     await finalizarTreinoSemExercicio(widget.dia!, nome);
                     if (!mounted) return;
-                    nav.pop();
-                    messenger.showSnackBar(const SnackBar(
+                    mostrarAvisoMovix(context, const SnackBar(
                         content: Text('Treino de hoje finalizado')));
+                    nav.pop();
                   },
                   icon: const Icon(Icons.delete_outline),
                   label: const Text('Excluir e finalizar treino'),
@@ -2993,8 +2992,7 @@ class _ImpEstado extends State<ImportarTela> {
   Future<void> _salvar() async {
     await app.salvarPlano(dias.where((d) => d.itens.isNotEmpty).toList());
     if (!mounted) return;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Treino salvo!')));
+    mostrarAvisoMovix(context, const SnackBar(content: Text('Treino salvo!')));
     setState(() => dias = []);
     widget.irPara(0);
   }
@@ -3002,7 +3000,7 @@ class _ImpEstado extends State<ImportarTela> {
 
   Future<void> _exportarPlano() async {
     if (app.plano.isEmpty || app.plano.every((d) => d.itens.isEmpty)) {
-      ScaffoldMessenger.of(context).showSnackBar(
+      mostrarAvisoMovix(context, 
         const SnackBar(content: Text('Seu plano ainda não tem exercícios para exportar.')),
       );
       return;

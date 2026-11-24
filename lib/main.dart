@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'package:flutter/rendering.dart';
 import 'extras.dart';
 import 'evolucao.dart';
@@ -144,7 +145,7 @@ class _ShellEstado extends State<Shell> {
     if (a == null || !mounted) return;
     final m = ScaffoldMessenger.of(context);
     m.hideCurrentSnackBar();
-    m.showSnackBar(SnackBar(
+    mostrarAvisoMovix(context, SnackBar(
       behavior: SnackBarBehavior.floating,
       margin: const EdgeInsets.fromLTRB(16, 0, 16, 110),
       backgroundColor: kSuperf,

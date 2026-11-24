@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'package:flutter/services.dart';
 import 'state.dart';
 import 'nivel.dart';
@@ -534,7 +535,7 @@ Future<void> _restaurar(BuildContext context) async {
   if (ok != true) return;
   final erro = await app.importar(c.text);
   if (!context.mounted) return;
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  mostrarAvisoMovix(context, SnackBar(
       content: Text(erro ?? 'Dados restaurados!')));
 }
 
@@ -603,9 +604,8 @@ class PrivacidadeTela extends StatelessWidget {
           FilledButton.icon(
             style: estiloPrimario,
             onPressed: () async {
-              final msg = ScaffoldMessenger.of(context);
               await Clipboard.setData(ClipboardData(text: app.exportar()));
-              msg.showSnackBar(const SnackBar(
+              mostrarAvisoMovix(context, const SnackBar(
                   content: Text(
                       'Dados copiados (JSON). Cole em um app de notas para guardar.')));
             },
@@ -987,7 +987,7 @@ class MeuPlanoTela extends StatelessWidget {
       decoration: BoxDecoration(
         color: branco(.065),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: atual ? kPrimaria : branco(.13), width: atual ? 1.6 : 1),
+        border: Border.all(color: atual ? kPrimaria : branco(.13), width: atual ? 1.2 : .8),
         boxShadow: atual
             ? [BoxShadow(color: kPrimaria.withOpacity(.12), blurRadius: 18, spreadRadius: 1)]
             : const [],
@@ -1006,7 +1006,7 @@ class MeuPlanoTela extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: feitos >= total && total > 0 ? kPrimaria : branco(.10),
-              border: Border.all(color: kPrimaria, width: 1.8),
+              border: Border.all(color: kPrimaria, width: 1.2),
             ),
             child: Text('$num', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800)),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'package:flutter/services.dart';
 import 'state.dart';
 import 'telas.dart';
@@ -223,7 +224,7 @@ Widget menuTresPontos(BuildContext context) {
   Future<void> copiar(String t, String msg) async {
     await Clipboard.setData(ClipboardData(text: t));
     if (context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+      mostrarAvisoMovix(context, SnackBar(content: Text(msg)));
     }
   }
 

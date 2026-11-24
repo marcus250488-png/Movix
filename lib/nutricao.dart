@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'state.dart';
 import 'telas.dart';
 import 'nutri_modelo.dart';
@@ -587,7 +588,7 @@ class _NutricaoEstado extends State<NutricaoTela> {
                         const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: kPrimaria, width: 2),
+                      border: Border.all(color: kPrimaria, width: 1.2),
                     ),
                     child: const Text('Ver receitas'),
                   ),
@@ -1102,7 +1103,7 @@ class _BuscarEstado extends State<BuscarAlimentoTela> {
             if (g != null) {
               widget.onAdd!({'t': 'a', 'id': a.id, 'q': g});
               if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
+                mostrarAvisoMovix(context, 
                   SnackBar(
                     content: Text('${a.nome} adicionado'),
                     duration: const Duration(seconds: 1),
@@ -1232,7 +1233,7 @@ class _AlimEditEstado extends State<AlimentoEditTela> {
       _erroBusca = null;
       _busca.clear();
     });
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    mostrarAvisoMovix(context, const SnackBar(
         content: Text('Valores por 100 g preenchidos. Confira e salve.')));
   }
 
@@ -1345,7 +1346,7 @@ class _AlimEditEstado extends State<AlimentoEditTela> {
     final nome = _nome.text.trim();
     final kcal = _num(_kcal.text);
     if (nome.isEmpty || kcal == null) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      mostrarAvisoMovix(context, const SnackBar(
           content: Text('Informe o nome e as calorias.')));
       return;
     }
@@ -1605,7 +1606,7 @@ class _ReceitaDetalheEstado extends State<ReceitaDetalheTela> {
     }
     await app.addEntrada(chaveData(widget.dia), _ref, e);
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    mostrarAvisoMovix(context, SnackBar(
         content: Text('Adicionado em ${_refPorId(_ref).nome}')));
     Navigator.pop(context);
   }
@@ -1796,7 +1797,7 @@ class _PerfilEstado extends State<PerfilTela> {
 
   Future<void> _salvar() async {
     if (_metas == null) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      mostrarAvisoMovix(context, const SnackBar(
           content: Text('Preencha sexo, nascimento, altura e peso.')));
       return;
     }

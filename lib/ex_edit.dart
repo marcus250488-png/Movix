@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'state.dart';
 import 'telas.dart';
 
@@ -64,8 +65,7 @@ class _ExEditEstado extends State<ExercicioEditTela> {
   Future<void> _salvar() async {
     final nome = _nome.text.trim();
     if (nome.isEmpty) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Informe o nome.')));
+      mostrarAvisoMovix(context, const SnackBar(content: Text('Informe o nome.')));
       return;
     }
     final apelidos = _apelidos.text

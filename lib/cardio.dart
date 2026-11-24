@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'package:flutter/services.dart';
 import 'state.dart';
 import 'telas.dart';
@@ -136,7 +137,7 @@ class _CardioEstado extends State<CardioTela> {
     if (_seg >= meta * 60) {
       _metaAvisada = true;
       HapticFeedback.heavyImpact();
-      ScaffoldMessenger.of(context).showSnackBar(
+      mostrarAvisoMovix(context, 
         SnackBar(content: Text('Meta de $meta min atingida! 🎉')),
       );
     }
@@ -162,8 +163,7 @@ class _CardioEstado extends State<CardioTela> {
     if (_rodando) _pausar();
     final seg = _seg;
     if (seg < 1) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Inicie o cardio antes.')));
+      mostrarAvisoMovix(context, const SnackBar(content: Text('Inicie o cardio antes.')));
       return;
     }
     _km.text =
@@ -227,7 +227,6 @@ class _CardioEstado extends State<CardioTela> {
     final fc = int.tryParse(_fc.text.trim());
     final kcalDigitada = int.tryParse(_kcalCtl.text.trim());
     final nome = _mods[_mod].nome;
-    final msg = ScaffoldMessenger.of(context);
     final agora = DateTime.now();
     final d = widget.dia;
     final quando = d == null
@@ -248,7 +247,7 @@ class _CardioEstado extends State<CardioTela> {
       kcal: (kcalDigitada != null && kcalDigitada > 0) ? kcalDigitada : _kcalDe(seg),
       fc: (fc != null && fc > 0) ? fc : null,
     ));
-    msg.showSnackBar(const SnackBar(content: Text('Cardio salvo no histórico!')));
+    mostrarAvisoMovix(context, const SnackBar(content: Text('Cardio salvo no histórico!')));
     if (!mounted) return;
     Navigator.of(context).popUntil((x) => x.isFirst);
   }
@@ -639,8 +638,7 @@ Future<void> registrarCardioManual(BuildContext context, DateTime dia) async {
     fc: r['fc'] as int?,
   ));
   if (context.mounted) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Cardio registrado!')));
+    mostrarAvisoMovix(context, const SnackBar(content: Text('Cardio registrado!')));
   }
 }
 
@@ -898,8 +896,7 @@ class _CardioFeitoEstado extends State<_CardioFeitoTela> {
   void _salvar() {
     final seg = _seg;
     if (seg <= 0) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Informe o tempo do cardio.')));
+      mostrarAvisoMovix(context, const SnackBar(content: Text('Informe o tempo do cardio.')));
       return;
     }
     final km = _kmV;

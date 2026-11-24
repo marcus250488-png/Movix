@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -176,7 +177,7 @@ class _CompartilharEstado extends State<CompartilharTela> {
       );
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
+        mostrarAvisoMovix(context, 
           SnackBar(content: Text('Não consegui gerar a imagem: $e')),
         );
       }

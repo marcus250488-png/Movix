@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'state.dart';
 import 'telas.dart';
@@ -113,15 +114,14 @@ class _OnbEstado extends State<OnboardingTela> {
       return;
     }
     final nav = Navigator.of(context);
-    final m = ScaffoldMessenger.of(context);
     await app.salvarPlano(p.comoPlano());
     await _concluir();
-    nav.pop();
-    m.showSnackBar(SnackBar(
+    mostrarAvisoMovix(context, SnackBar(
       behavior: SnackBarBehavior.floating,
       backgroundColor: kSuperf,
       content: Text('Pronto! "${p.nome}" é o seu plano agora.'),
     ));
+    nav.pop();
   }
 
   // ---------- peças visuais ----------

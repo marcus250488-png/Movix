@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'state.dart';
 import 'telas.dart';
 import 'fotos.dart';
@@ -318,7 +319,7 @@ class EditarPlanoTela extends StatelessWidget {
     final usados = app.plano.map((d) => d.weekday).toSet();
     final livres = [for (var i = 1; i <= 7; i++) if (!usados.contains(i)) i];
     if (livres.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
+      mostrarAvisoMovix(context, 
           const SnackBar(content: Text('Todos os dias já têm treino.')));
       return;
     }

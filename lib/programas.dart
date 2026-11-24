@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'feedback_movix.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'state.dart';
 import 'pro.dart';
@@ -267,7 +268,6 @@ class ProgramaDetalheTela extends StatelessWidget {
           MaterialPageRoute(builder: (_) => MovixProTela(programaNome: programa.nome)));
       return;
     }
-    final messenger = ScaffoldMessenger.of(context);
     final nav = Navigator.of(context);
     if (app.plano.isNotEmpty) {
       final ok = await showDialog<bool>(
@@ -291,12 +291,12 @@ class ProgramaDetalheTela extends StatelessWidget {
       if (ok != true) return;
     }
     await app.salvarPlano(programa.comoPlano());
-    nav.popUntil((r) => r.isFirst);
-    messenger.showSnackBar(SnackBar(
+    mostrarAvisoMovix(context, SnackBar(
       behavior: SnackBarBehavior.floating,
       backgroundColor: kSuperf,
       content: Text('Programa "${programa.nome}" aplicado ao seu plano.'),
     ));
+    nav.popUntil((r) => r.isFirst);
   }
 
   @override
