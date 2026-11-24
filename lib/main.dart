@@ -8,6 +8,7 @@ import 'transicao.dart';
 import 'nutricao.dart';
 import 'passos.dart';
 import 'onboarding.dart';
+import 'splash.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

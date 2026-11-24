@@ -132,3 +132,9 @@ ATUALIZACAO VISUAL E INICIALIZACAO - FASE 2
 - A tela nativa de inicialização Android usa o fundo vinho/preto e a marca Movix.
 - A tipografia de títulos foi fixada em sans-serif-condensed do sistema para evitar troca de fonte após carregamento remoto.
 - A medição real de tempo de abertura e o flutter analyze ainda devem ser executados no ambiente de build/dispositivo.
+
+ATUALIZAÇÃO — SPLASH NATIVA MOVIX
+- A abertura animada foi implementada em Flutter nativo (lib/splash.dart), sem WebView.
+- A inicialização local agora começa depois do primeiro frame, para exibir a splash enquanto SharedPreferences e os arquivos JSON são carregados.
+- A splash permanece por no mínimo 2,6 segundos e aguarda o carregamento real antes de sair.
+- A abertura nativa Android usa fundo em degradê e o ícone do aplicativo.
