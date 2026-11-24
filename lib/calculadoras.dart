@@ -334,7 +334,7 @@ class _CalcEstado extends State<CalculadorasTela> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(6),
                         child: LinearProgressIndicator(
-                          value: (l[0] as num) / 100,
+                          value: l[0] / 100,
                           minHeight: 8,
                           backgroundColor: branco(.08),
                           valueColor:
@@ -345,7 +345,7 @@ class _CalcEstado extends State<CalculadorasTela> {
                     SizedBox(
                       width: 108,
                       child: Text(
-                          '${_f(_arred(media * (l[0] as num) / 100, 0.5))} kg · ~${l[1]}x',
+                          '${_f(_arred(media * l[0] / 100, 0.5))} kg · ~${l[1]}x',
                           textAlign: TextAlign.right),
                     ),
                   ],
@@ -387,7 +387,7 @@ class _CalcEstado extends State<CalculadorasTela> {
         final linhas = <List<num>>[];
         double? anterior;
         for (final e in esquema) {
-          final c = _arred(trab * (e[0] as num) / 100, 2.5);
+          final c = _arred(trab * e[0] / 100, 2.5);
           if (c < 1 || c >= trab || c == anterior) continue;
           linhas.add([c, e[1]]);
           anterior = c;

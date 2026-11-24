@@ -784,7 +784,7 @@ class _InicioEstado extends State<InicioTela> {
           margin: const EdgeInsets.symmetric(horizontal: 2),
           padding: EdgeInsets.symmetric(vertical: 10 - dist * 1.0),
           decoration: BoxDecoration(
-            color: sel ? const kBordoEscuro : branco(.07),
+            color: sel ? kBordoEscuro : branco(.07),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
                 color: sel ? kPrimaria : branco(.12), width: 1),
