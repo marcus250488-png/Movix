@@ -148,6 +148,44 @@ class _MovixSplashPainter extends CustomPainter {
       c.drawRRect(RRect.fromRectAndRadius(Rect.fromLTWH(x,y-1.5,60,3),const Radius.circular(99)),
         Paint()..shader=const LinearGradient(colors:[Colors.transparent,pink,Colors.transparent]).createShader(Rect.fromLTWH(x,y-2,60,4)));
     }
+
+    // Pequena prévia dos três pilares do Movix. Eles entram depois da marca,
+    // reforçando a proposta sem transformar a splash em um vídeo pesado.
+    final cardsReveal = part(.78, .98);
+    final labels = const ['TREINO', 'EVOLUÇÃO', 'NUTRIÇÃO'];
+    final subtitles = const ['rotina', 'progresso', 'hábitos'];
+    final cardW = math.min(106.0, (s.width - 56) / 3);
+    const gap = 7.0;
+    final totalW = cardW * 3 + gap * 2;
+    final left = (s.width - totalW) / 2;
+    final cardY = s.height * .72;
+    for (var i = 0; i < 3; i++) {
+      final delay = (cardsReveal - i * .12).clamp(0.0, 1.0).toDouble();
+      final x = left + i * (cardW + gap);
+      final offsetY = (1 - Curves.easeOut.transform(delay)) * 12;
+      final rect = RRect.fromRectAndRadius(
+        Rect.fromLTWH(x, cardY + offsetY, cardW, 48),
+        const Radius.circular(12),
+      );
+      c.drawRRect(rect, Paint()..color = cream.withValues(alpha: .055 * delay));
+      c.drawRRect(rect, Paint()..style = PaintingStyle.stroke..strokeWidth = 1
+        ..color = cream.withValues(alpha: .13 * delay));
+      final title = TextPainter(
+        text: TextSpan(text: labels[i], style: TextStyle(
+          color: cream.withValues(alpha: .78 * delay), fontSize: 8.5,
+          fontWeight: FontWeight.w700, letterSpacing: 1.0,
+        )),
+        textDirection: TextDirection.ltr,
+      )..layout(maxWidth: cardW - 12);
+      title.paint(c, Offset(x + 6, cardY + 11 + offsetY));
+      final subtitle = TextPainter(
+        text: TextSpan(text: subtitles[i], style: TextStyle(
+          color: cream.withValues(alpha: .42 * delay), fontSize: 8,
+        )),
+        textDirection: TextDirection.ltr,
+      )..layout(maxWidth: cardW - 12);
+      subtitle.paint(c, Offset(x + 6, cardY + 27 + offsetY));
+    }
   }
   @override
   bool shouldRepaint(covariant _MovixSplashPainter old) => old.t!=t || old.pulse!=pulse;
