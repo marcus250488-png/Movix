@@ -23,22 +23,36 @@ class MovixBootstrap extends StatefulWidget {
 }
 
 class _MovixBootstrapState extends State<MovixBootstrap> {
+  final GlobalKey<MovixSplashState> _splashKey = GlobalKey<MovixSplashState>();
   bool _pronto = false;
+  bool _iniciando = false;
   Object? _erro;
 
   @override
   void initState() {
     super.initState();
-    _inicializar();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _inicializar());
   }
 
   Future<void> _inicializar() async {
+    if (_iniciando || _pronto) return;
+    _iniciando = true;
+    final inicio = DateTime.now();
+    setState(() => _erro = null);
     try {
       await app.init();
       await app.aplicarManterTela();
-      if (mounted) setState(() { _pronto = true; _erro = null; });
+      // Mantém a animação de marca visível por pelo menos 2,6 s,
+      // mas só sai depois que a inicialização real terminou.
+      final decorrido = DateTime.now().difference(inicio);
+      const minimo = Duration(milliseconds: 2600);
+      if (decorrido < minimo) await Future.delayed(minimo - decorrido);
+      await _splashKey.currentState?.fechar();
+      if (mounted) setState(() => _pronto = true);
     } catch (e) {
       if (mounted) setState(() => _erro = e);
+    } finally {
+      _iniciando = false;
     }
   }
 
@@ -47,25 +61,13 @@ class _MovixBootstrapState extends State<MovixBootstrap> {
       ? const TreinoApp()
       : MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: const Color(0xFF120609)),
-          home: Scaffold(
-            backgroundColor: const Color(0xFF120609),
-            body: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset('assets/marca/logo.png', width: 112, height: 112),
-                  const SizedBox(height: 22),
-                  const Text('MOVIX', style: TextStyle(fontFamily: 'sans-serif-condensed', fontSize: 34, fontWeight: FontWeight.w700, letterSpacing: 4, color: Color(0xFFE8DCC8))),
-                  const SizedBox(height: 22),
-                  if (_erro == null) const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2, color: Color(0xFFA3203F))),
-                  if (_erro != null) ...[
-                    const Padding(padding: EdgeInsets.all(16), child: Text('Não foi possível carregar seus dados.', textAlign: TextAlign.center)),
-                    TextButton(onPressed: _inicializar, child: const Text('Tentar novamente')),
-                  ],
-                ],
-              ),
-            ),
+          theme: ThemeData.dark().copyWith(
+            scaffoldBackgroundColor: const Color(0xFF190A10),
+          ),
+          home: MovixSplash(
+            key: _splashKey,
+            erro: _erro?.toString(),
+            onTentarNovamente: _inicializar,
           ),
         );
 }

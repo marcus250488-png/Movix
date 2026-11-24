@@ -102,8 +102,21 @@ class _MovixSplashPainter extends CustomPainter {
         Paint()..style=PaintingStyle.stroke..strokeWidth=46..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round
           ..color=Colors.white.withValues(alpha:.55*(1-shine*.35))..maskFilter=const MaskFilter.blur(BlurStyle.normal,8));
     }
+    final fallRaw = ((t-.40)/(.72-.40)).clamp(0.0,1.0).toDouble();
+    double dropY;
+    double dropScaleX = 1, dropScaleY = 1;
+    if (fallRaw < .52) {
+      dropY = -250 * (1 - fallRaw/.52);
+    } else if (fallRaw < .74) {
+      final bounce = (fallRaw-.52)/.22;
+      dropY = -14 * math.sin(bounce*math.pi);
+      dropScaleX = 1 + .16*math.sin(bounce*math.pi);
+      dropScaleY = 1 - .20*math.sin(bounce*math.pi);
+    } else {
+      dropY = 0;
+    }
     final drop = part(.40,.72);
-    final dot = Offset(240,112-(1-drop)*250);
+    final dot = Offset(240,112+dropY);
     final ring = part(.55,.88);
     if (ring > 0 && ring < 1) {
       for (var i=0;i<2;i++) {
@@ -112,8 +125,12 @@ class _MovixSplashPainter extends CustomPainter {
       }
     }
     final breathe = t>=1 ? .04*pulse : .025*math.sin(t*math.pi*4);
-    c.drawCircle(dot,24*(1+breathe),Paint()..color=pink.withValues(alpha:drop)..maskFilter=const MaskFilter.blur(BlurStyle.normal,1.5));
-    c.drawCircle(dot,27*(1+breathe),Paint()..color=pink.withValues(alpha:.35*drop)..maskFilter=const MaskFilter.blur(BlurStyle.normal,18));
+    c.save();
+    c.translate(dot.dx,dot.dy);
+    c.scale(dropScaleX*(1+breathe),dropScaleY*(1+breathe));
+    c.drawCircle(Offset.zero,24,Paint()..color=pink.withValues(alpha:drop)..maskFilter=const MaskFilter.blur(BlurStyle.normal,1.5));
+    c.drawCircle(Offset.zero,27,Paint()..color=pink.withValues(alpha:.35*drop)..maskFilter=const MaskFilter.blur(BlurStyle.normal,18));
+    c.restore();
     c.restore();
 
     final reveal=part(.78,.98);
