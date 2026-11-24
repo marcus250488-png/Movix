@@ -125,3 +125,10 @@ IMPORTANTE: a integracao de cobranca ainda nao foi ativada. Ela depende do
 cadastro dos produtos mensal e anual no Google Play Console, dos respectivos
 IDs de produto e dos testes de compra/renovacao/restauracao. Nao alterar o
 estado Premium para liberar acesso pago antes de implementar a validacao.
+
+ATUALIZACAO VISUAL E INICIALIZACAO - FASE 2
+- Os cartões de dias na tela inicial e o cabeçalho do detalhe do treino usam a marca M do Movix como marca d'água, sem fotografia de pessoas.
+- A abertura agora apresenta uma tela de identidade imediatamente enquanto os dados locais são carregados.
+- A tela nativa de inicialização Android usa o fundo vinho/preto e a marca Movix.
+- A tipografia de títulos foi fixada em sans-serif-condensed do sistema para evitar troca de fonte após carregamento remoto.
+- A medição real de tempo de abertura e o flutter analyze ainda devem ser executados no ambiente de build/dispositivo.

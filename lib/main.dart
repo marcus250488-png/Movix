@@ -9,11 +9,64 @@ import 'nutricao.dart';
 import 'passos.dart';
 import 'onboarding.dart';
 
-Future<void> main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await app.init();
-  await app.aplicarManterTela();
-  runApp(const TreinoApp());
+  runApp(const MovixBootstrap());
+}
+
+/// Exibe a identidade imediatamente; a leitura local acontece depois do primeiro frame.
+class MovixBootstrap extends StatefulWidget {
+  const MovixBootstrap({super.key});
+  @override
+  State<MovixBootstrap> createState() => _MovixBootstrapState();
+}
+
+class _MovixBootstrapState extends State<MovixBootstrap> {
+  bool _pronto = false;
+  Object? _erro;
+
+  @override
+  void initState() {
+    super.initState();
+    _inicializar();
+  }
+
+  Future<void> _inicializar() async {
+    try {
+      await app.init();
+      await app.aplicarManterTela();
+      if (mounted) setState(() { _pronto = true; _erro = null; });
+    } catch (e) {
+      if (mounted) setState(() => _erro = e);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => _pronto
+      ? const TreinoApp()
+      : MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: const Color(0xFF120609)),
+          home: Scaffold(
+            backgroundColor: const Color(0xFF120609),
+            body: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset('assets/marca/logo.png', width: 112, height: 112),
+                  const SizedBox(height: 22),
+                  const Text('MOVIX', style: TextStyle(fontFamily: 'sans-serif-condensed', fontSize: 34, fontWeight: FontWeight.w700, letterSpacing: 4, color: Color(0xFFE8DCC8))),
+                  const SizedBox(height: 22),
+                  if (_erro == null) const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2, color: Color(0xFFA3203F))),
+                  if (_erro != null) ...[
+                    const Padding(padding: EdgeInsets.all(16), child: Text('Não foi possível carregar seus dados.', textAlign: TextAlign.center)),
+                    TextButton(onPressed: _inicializar, child: const Text('Tentar novamente')),
+                  ],
+                ],
+              ),
+            ),
+          ),
+        );
 }
 
 class TreinoApp extends StatelessWidget {

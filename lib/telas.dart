@@ -8,12 +8,10 @@ import 'package:share_plus/share_plus.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show HapticFeedback;
-import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'state.dart';
 import 'extras.dart' show MeuPlanoTela, fmtNum, fmtTempo;
 import 'edicao.dart';
-import 'fotos.dart';
 import 'cardio.dart';
 import 'ex_edit.dart';
 import 'passos.dart';
@@ -34,7 +32,8 @@ const kSuperf = Color(0xFF241116);
 const kMudo = Color(0xFFB3A394);
 Color branco(double o) => Color.fromRGBO(255, 255, 255, o);
 
-TextStyle titulo(double s) => GoogleFonts.barlowCondensed(
+TextStyle titulo(double s) => TextStyle(
+    fontFamily: 'sans-serif-condensed',
     fontSize: s, fontWeight: FontWeight.w700, color: kBege);
 
 final estiloPrimario = FilledButton.styleFrom(
@@ -346,6 +345,57 @@ class _LoginEstado extends State<LoginTela> {
       ),
     );
   }
+}
+
+class _FundoMarcaMovix extends StatelessWidget {
+  const _FundoMarcaMovix();
+  @override
+  Widget build(BuildContext context) => Stack(
+        fit: StackFit.expand,
+        children: [
+          const DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFF16070C), Color(0xFF080608), Color(0xFF210A12)],
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: Center(
+              child: Container(
+                width: 230, height: 230,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [BoxShadow(color: kPrimaria.withOpacity(.16), blurRadius: 70, spreadRadius: 8)],
+                ),
+                child: const _MarcaLogoCentral(),
+              ),
+            ),
+          ),
+          const Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                  colors: [Color(0x22000000), Color(0x88000000), Color(0xDD000000)],
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+}
+
+class _MarcaLogoCentral extends StatelessWidget {
+  const _MarcaLogoCentral();
+  @override
+  Widget build(BuildContext context) => Image.asset(
+        'assets/marca/logo_marca_dagua.png',
+        fit: BoxFit.contain,
+        opacity: const AlwaysStoppedAnimation(.15),
+      );
 }
 
 // ---------- Início ----------
@@ -946,22 +996,7 @@ class _InicioEstado extends State<InicioTela> {
         decoration: _decCard,
         child: Stack(
           children: [
-            Positioned.fill(
-              child: Image.asset(
-                app.fotosFemininas
-                    ? 'assets/fotos/f_descanso.jpg'
-                    : 'assets/fotos/descanso.jpg',
-                fit: BoxFit.cover,
-                alignment: const Alignment(0, -0.35),
-                gaplessPlayback: true,
-                errorBuilder: (_, __, ___) => Image.asset(
-                  'assets/fotos/descanso.jpg',
-                  fit: BoxFit.cover,
-                  alignment: const Alignment(0, -0.35),
-                  errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-                ),
-              ),
-            ),
+            const Positioned.fill(child: _FundoMarcaMovix()),
             const Positioned.fill(
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -999,7 +1034,6 @@ class _InicioEstado extends State<InicioTela> {
     final kcal = (min * 6.5).round();
     final dUlt = ultima == null ? null : DateTime.tryParse(ultima.data);
     final rotulo = feito ? 'Concluído' : (eHoje ? 'Treino do dia' : 'Programado');
-    final foto = fotoDoDia(dia);
     final conteudo = Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -1057,41 +1091,7 @@ class _InicioEstado extends State<InicioTela> {
       decoration: _decCard,
       child: Stack(
         children: [
-          if (foto != null) ...[
-            Positioned.fill(
-              child: Image.asset(
-                fotoAsset(foto),
-                fit: BoxFit.cover,
-                alignment: Alignment(foto.ax, foto.ay),
-                gaplessPlayback: true,
-                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-              ),
-            ),
-            const Positioned.fill(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: [0.0, 0.30, 0.58, 1.0],
-                    colors: [
-                      Color(0x33000000),
-                      Color(0x00000000),
-                      Color(0xCC000000),
-                      Color(0xF5000000),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ] else
-            const Positioned(
-              top: 30,
-              left: 0,
-              right: 0,
-              child: Icon(Icons.fitness_center,
-                  size: 150, color: Color.fromRGBO(0, 80, 230, .25)),
-            ),
+          const Positioned.fill(child: _FundoMarcaMovix()),
           Positioned.fill(
             child: Padding(
               padding: const EdgeInsets.all(20),
@@ -1321,9 +1321,8 @@ class TreinoTela extends StatelessWidget {
     ));
   }
 
-  /// Topo com a foto do dia (mesma do card da tela inicial) e o resumo.
+  /// Cabeçalho do treino com a marca Movix e o resumo.
   Widget _cabecalho(String resumo) {
-    final foto = fotoDoDia(dia);
     return Container(
       height: 190,
       clipBehavior: Clip.antiAlias,
@@ -1335,14 +1334,7 @@ class TreinoTela extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          if (foto != null)
-            Image.asset(
-              fotoAsset(foto),
-              fit: BoxFit.cover,
-              alignment: Alignment(foto.ax, -0.7), // desce a foto: cabeça visível
-              gaplessPlayback: true,
-              errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-            ),
+          const _FundoMarcaMovix(),
           const DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(
