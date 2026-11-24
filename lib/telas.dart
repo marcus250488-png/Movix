@@ -1145,7 +1145,7 @@ class TreinoTela extends StatelessWidget {
       if (dt == null || s.cardio || s.dia != dia.nome || chaveData(dt) != k) {
         continue;
       }
-      if (r == null || s.data.compareTo(r!.data) > 0) r = s;
+      if (r == null || s.data.compareTo(r.data) > 0) r = s;
     }
     return r;
   }
@@ -1952,12 +1952,11 @@ class _RunEstado extends State<RunTela> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     final salvo = _RunSalvo.atual;
-    final continua = salvo != null &&
+    if (salvo != null &&
         salvo.dia == widget.dia.nome &&
         salvo.data == chaveData(DateTime.now()) &&
-        salvo.livre == widget.livre;
-    if (continua) {
-      _restaurar(salvo!);
+        salvo.livre == widget.livre) {
+      _restaurar(salvo);
       if (widget.daqui) _irPara(widget.inicio);
     } else {
     // Fila: só os exercícios que ainda faltam hoje (se já houve treino parcial).

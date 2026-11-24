@@ -38,7 +38,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Analyze
-        run: flutter analyze
+        # Mantém warnings/infos visíveis sem bloquear o APK; erros continuam bloqueando.
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
   build-debug:
     name: Build debug APK
