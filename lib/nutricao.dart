@@ -55,6 +55,9 @@ class _Pill extends StatelessWidget {
 String _macrosTexto(Macros m) =>
     '${fmtD(m.kcal)} kcal • P ${fmtD(m.p)} • C ${fmtD(m.c)} • G ${fmtD(m.g)}';
 
+Refeicao _refPorId(String id) =>
+    kRefeicoes.firstWhere((r) => r.id == id, orElse: () => kRefeicoes.last);
+
 // ============================================================
 // Tela principal da aba Nutrição
 // ============================================================
