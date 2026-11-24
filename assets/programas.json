@@ -1,0 +1,1159 @@
+{
+ "programas": [
+  {
+   "id": "iniciante-maquinas-3x",
+   "nome": "Iniciante nas máquinas",
+   "nivel": "Iniciante",
+   "diasSemana": 3,
+   "objetivo": "Começar com segurança",
+   "equipamento": "Máquinas",
+   "descricao": "Corpo inteiro em 3 dias, só com máquinas guiadas. Ideal para aprender os movimentos e criar o hábito.",
+   "premium": false,
+   "dias": [
+    {
+     "nome": "Treino A",
+     "weekday": 1,
+     "foco": "Corpo inteiro",
+     "itens": [
+      {
+       "exId": "leg-press",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "supino-reto-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "puxada-alta-aberta",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "desenv-maq",
+       "series": 2,
+       "reps": "12"
+      },
+      {
+       "exId": "abdominal-supra",
+       "series": 3,
+       "reps": "15"
+      }
+     ]
+    },
+    {
+     "nome": "Treino B",
+     "weekday": 3,
+     "foco": "Corpo inteiro",
+     "itens": [
+      {
+       "exId": "cadeira-extensora",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "supino-inclinado-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "remada-baixa-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "flexora-sentada",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "prancha",
+       "series": 3,
+       "reps": "30 s"
+      }
+     ]
+    },
+    {
+     "nome": "Treino C",
+     "weekday": 5,
+     "foco": "Corpo inteiro",
+     "itens": [
+      {
+       "exId": "agachamento-smith",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "crucifixo-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "remada-articulada",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "elev-lateral-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "panturrilha-leg",
+       "series": 3,
+       "reps": "15"
+      }
+     ]
+    }
+   ],
+   "objetivos": [
+    "saude",
+    "hipertrofia",
+    "emagrecer"
+   ],
+   "local": "academia"
+  },
+  {
+   "id": "fullbody-3x",
+   "nome": "Full Body 3x",
+   "nivel": "Iniciante",
+   "diasSemana": 3,
+   "objetivo": "Força e massa base",
+   "equipamento": "Academia completa",
+   "descricao": "Três treinos de corpo inteiro por semana, com os grandes movimentos. Ótimo para evoluir carga rápido.",
+   "premium": false,
+   "dias": [
+    {
+     "nome": "Treino A",
+     "weekday": 1,
+     "foco": "Corpo inteiro",
+     "itens": [
+      {
+       "exId": "agachamento-livre",
+       "series": 4,
+       "reps": "8"
+      },
+      {
+       "exId": "supino-reto-barra",
+       "series": 4,
+       "reps": "8"
+      },
+      {
+       "exId": "remada-curvada",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "desenv-halter",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "prancha",
+       "series": 3,
+       "reps": "40 s"
+      }
+     ]
+    },
+    {
+     "nome": "Treino B",
+     "weekday": 3,
+     "foco": "Corpo inteiro",
+     "itens": [
+      {
+       "exId": "leg-press",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "supino-halter",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "puxada-neutra",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "stiff",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "rosca-direta",
+       "series": 2,
+       "reps": "12"
+      },
+      {
+       "exId": "triceps-corda",
+       "series": 2,
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nome": "Treino C",
+     "weekday": 5,
+     "foco": "Corpo inteiro",
+     "itens": [
+      {
+       "exId": "agachamento-hack",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "supino-inclinado-maq",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "remada-unilateral-halter",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "elev-lateral-halter",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "elevacao-pernas",
+       "series": 3,
+       "reps": "12"
+      }
+     ]
+    }
+   ],
+   "objetivos": [
+    "forca",
+    "hipertrofia",
+    "emagrecer"
+   ],
+   "local": "academia"
+  },
+  {
+   "id": "abc-3x",
+   "nome": "ABC clássico",
+   "nivel": "Intermediário",
+   "diasSemana": 3,
+   "objetivo": "Hipertrofia",
+   "equipamento": "Academia completa",
+   "descricao": "Empurrar, puxar e pernas. Cada grupo é treinado com volume alto uma vez por semana.",
+   "premium": false,
+   "dias": [
+    {
+     "nome": "A · Peito, ombros e tríceps",
+     "weekday": 1,
+     "foco": "Peito e ombros",
+     "itens": [
+      {
+       "exId": "supino-reto-barra",
+       "series": 4,
+       "reps": "8-10"
+      },
+      {
+       "exId": "supino-inclinado-maq",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "crucifixo-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "desenv-halter",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "elev-lateral-halter",
+       "series": 4,
+       "reps": "12-15"
+      },
+      {
+       "exId": "triceps-corda",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "triceps-frances-polia",
+       "series": 3,
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nome": "B · Costas e bíceps",
+     "weekday": 3,
+     "foco": "Costas e bíceps",
+     "itens": [
+      {
+       "exId": "puxada-alta-aberta",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "remada-baixa-maq",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "remada-unilateral-halter",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "crucifixo-inverso-maq",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "rosca-direta",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "rosca-martelo",
+       "series": 3,
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nome": "C · Pernas",
+     "weekday": 5,
+     "foco": "Pernas",
+     "itens": [
+      {
+       "exId": "agachamento-livre",
+       "series": 4,
+       "reps": "8-10"
+      },
+      {
+       "exId": "leg-press",
+       "series": 4,
+       "reps": "12"
+      },
+      {
+       "exId": "cadeira-extensora",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "mesa-flexora",
+       "series": 4,
+       "reps": "12"
+      },
+      {
+       "exId": "stiff",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "panturrilha-pe",
+       "series": 4,
+       "reps": "15"
+      }
+     ]
+    }
+   ],
+   "objetivos": [
+    "hipertrofia"
+   ],
+   "local": "academia"
+  },
+  {
+   "id": "upper-lower-4x",
+   "nome": "Upper / Lower 4x",
+   "nivel": "Intermediário",
+   "diasSemana": 4,
+   "objetivo": "Força e hipertrofia",
+   "equipamento": "Academia completa",
+   "descricao": "Superiores e inferiores duas vezes por semana. Frequência dupla para ganhar mais rápido.",
+   "premium": true,
+   "dias": [
+    {
+     "nome": "Superior 1",
+     "weekday": 1,
+     "foco": "Superior",
+     "itens": [
+      {
+       "exId": "supino-reto-barra",
+       "series": 4,
+       "reps": "6-8"
+      },
+      {
+       "exId": "remada-curvada",
+       "series": 4,
+       "reps": "8"
+      },
+      {
+       "exId": "desenv-halter",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "puxada-neutra",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "rosca-direta",
+       "series": 2,
+       "reps": "10"
+      },
+      {
+       "exId": "triceps-testa",
+       "series": 2,
+       "reps": "10"
+      }
+     ]
+    },
+    {
+     "nome": "Inferior 1",
+     "weekday": 2,
+     "foco": "Pernas",
+     "itens": [
+      {
+       "exId": "agachamento-livre",
+       "series": 4,
+       "reps": "6-8"
+      },
+      {
+       "exId": "rdl-barra",
+       "series": 3,
+       "reps": "8-10"
+      },
+      {
+       "exId": "leg-press",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "flexora-sentada",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "panturrilha-pe",
+       "series": 4,
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nome": "Superior 2",
+     "weekday": 4,
+     "foco": "Superior",
+     "itens": [
+      {
+       "exId": "supino-inclinado-maq",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "puxada-alta-aberta",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "elev-lateral-polia",
+       "series": 4,
+       "reps": "15"
+      },
+      {
+       "exId": "remada-baixa-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "rosca-scott-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "triceps-corda",
+       "series": 3,
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nome": "Inferior 2",
+     "weekday": 5,
+     "foco": "Pernas",
+     "itens": [
+      {
+       "exId": "agachamento-hack",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "stiff",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "cadeira-extensora",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "mesa-flexora",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "elevacao-pelvica",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "panturrilha-leg",
+       "series": 4,
+       "reps": "15"
+      }
+     ]
+    }
+   ],
+   "objetivos": [
+    "forca",
+    "hipertrofia"
+   ],
+   "local": "academia"
+  },
+  {
+   "id": "abcd-4x",
+   "nome": "ABCD hipertrofia",
+   "nivel": "Intermediário",
+   "diasSemana": 4,
+   "objetivo": "Hipertrofia",
+   "equipamento": "Academia completa",
+   "descricao": "Divisão em 4 dias com foco muscular, ótima para quem já treina há alguns meses.",
+   "premium": true,
+   "dias": [
+    {
+     "nome": "A · Peito e tríceps",
+     "weekday": 1,
+     "foco": "Peito e tríceps",
+     "itens": [
+      {
+       "exId": "supino-reto-barra",
+       "series": 4,
+       "reps": "8-10"
+      },
+      {
+       "exId": "supino-inclinado-maq",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "crucifixo-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "triceps-testa",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "triceps-corda",
+       "series": 3,
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nome": "B · Costas e bíceps",
+     "weekday": 2,
+     "foco": "Costas e bíceps",
+     "itens": [
+      {
+       "exId": "puxada-alta-aberta",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "remada-curvada",
+       "series": 4,
+       "reps": "8-10"
+      },
+      {
+       "exId": "pullover-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "rosca-direta",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "rosca-alternada-halter",
+       "series": 3,
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nome": "C · Pernas",
+     "weekday": 4,
+     "foco": "Pernas",
+     "itens": [
+      {
+       "exId": "agachamento-livre",
+       "series": 4,
+       "reps": "8-10"
+      },
+      {
+       "exId": "leg-press",
+       "series": 4,
+       "reps": "12"
+      },
+      {
+       "exId": "cadeira-extensora",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "stiff",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "mesa-flexora",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "panturrilha-pe",
+       "series": 4,
+       "reps": "15"
+      }
+     ]
+    },
+    {
+     "nome": "D · Ombros e abdômen",
+     "weekday": 5,
+     "foco": "Ombros e abdômen",
+     "itens": [
+      {
+       "exId": "desenv-halter",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "elev-lateral-halter",
+       "series": 4,
+       "reps": "12-15"
+      },
+      {
+       "exId": "elev-frontal-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "crucifixo-inverso-maq",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "abdominal-supra",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "prancha",
+       "series": 3,
+       "reps": "45 s"
+      }
+     ]
+    }
+   ],
+   "objetivos": [
+    "hipertrofia"
+   ],
+   "local": "academia"
+  },
+  {
+   "id": "ppl-5x",
+   "nome": "Push / Pull / Legs 5x",
+   "nivel": "Avançado",
+   "diasSemana": 5,
+   "objetivo": "Hipertrofia avançada",
+   "equipamento": "Academia completa",
+   "descricao": "Empurrar, puxar e pernas com volume alto. Para quem treina com consistência e já domina a técnica.",
+   "premium": true,
+   "dias": [
+    {
+     "nome": "Push",
+     "weekday": 1,
+     "foco": "Peito, ombros e tríceps",
+     "itens": [
+      {
+       "exId": "supino-reto-barra",
+       "series": 4,
+       "reps": "6-8"
+      },
+      {
+       "exId": "supino-inclinado-maq",
+       "series": 4,
+       "reps": "8-10"
+      },
+      {
+       "exId": "desenv-halter",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "elev-lateral-polia",
+       "series": 4,
+       "reps": "15"
+      },
+      {
+       "exId": "triceps-frances-polia",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "triceps-corda",
+       "series": 3,
+       "reps": "15"
+      }
+     ]
+    },
+    {
+     "nome": "Pull",
+     "weekday": 2,
+     "foco": "Costas e bíceps",
+     "itens": [
+      {
+       "exId": "barra-fixa",
+       "series": 4,
+       "reps": "8"
+      },
+      {
+       "exId": "remada-curvada",
+       "series": 4,
+       "reps": "8"
+      },
+      {
+       "exId": "remada-baixa-maq",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "crucifixo-inverso-maq",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "rosca-banco-45",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "rosca-martelo",
+       "series": 3,
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nome": "Legs",
+     "weekday": 3,
+     "foco": "Pernas",
+     "itens": [
+      {
+       "exId": "agachamento-livre",
+       "series": 5,
+       "reps": "6-8"
+      },
+      {
+       "exId": "leg-press",
+       "series": 4,
+       "reps": "12"
+      },
+      {
+       "exId": "cadeira-extensora",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "stiff",
+       "series": 4,
+       "reps": "8-10"
+      },
+      {
+       "exId": "mesa-flexora",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "panturrilha-pe",
+       "series": 5,
+       "reps": "15"
+      }
+     ]
+    },
+    {
+     "nome": "Push 2",
+     "weekday": 5,
+     "foco": "Peito, ombros e tríceps",
+     "itens": [
+      {
+       "exId": "supino-inclinado-maq",
+       "series": 4,
+       "reps": "8"
+      },
+      {
+       "exId": "crucifixo-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "desenv-maq",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "elev-lateral-halter",
+       "series": 4,
+       "reps": "15"
+      },
+      {
+       "exId": "triceps-testa",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "triceps-banco",
+       "series": 3,
+       "reps": "15"
+      }
+     ]
+    },
+    {
+     "nome": "Pull 2",
+     "weekday": 6,
+     "foco": "Costas e bíceps",
+     "itens": [
+      {
+       "exId": "puxada-neutra",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "remada-unilateral-halter",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "pullover-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "rosca-scott-maq",
+       "series": 3,
+       "reps": "10"
+      },
+      {
+       "exId": "rosca-alternada-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "antebraco",
+       "series": 3,
+       "reps": "15"
+      }
+     ]
+    }
+   ],
+   "objetivos": [
+    "hipertrofia"
+   ],
+   "local": "academia"
+  },
+  {
+   "id": "gluteos-pernas-4x",
+   "nome": "Glúteos e pernas",
+   "nivel": "Intermediário",
+   "diasSemana": 4,
+   "objetivo": "Glúteos e definição",
+   "equipamento": "Academia completa",
+   "descricao": "Foco em glúteos e pernas, com dois dias de superiores para equilibrar. Serve para qualquer pessoa que queira priorizar a parte inferior.",
+   "premium": true,
+   "dias": [
+    {
+     "nome": "Glúteos e posterior",
+     "weekday": 1,
+     "foco": "Glúteos e posterior",
+     "itens": [
+      {
+       "exId": "elevacao-pelvica",
+       "series": 4,
+       "reps": "10-12"
+      },
+      {
+       "exId": "rdl-barra",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "gluteo-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "mesa-flexora",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "abducao-maq",
+       "series": 3,
+       "reps": "15"
+      }
+     ]
+    },
+    {
+     "nome": "Superiores",
+     "weekday": 2,
+     "foco": "Superior",
+     "itens": [
+      {
+       "exId": "puxada-alta-aberta",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "supino-reto-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "remada-baixa-maq",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "elev-lateral-halter",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "triceps-corda",
+       "series": 2,
+       "reps": "15"
+      },
+      {
+       "exId": "rosca-alternada-halter",
+       "series": 2,
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nome": "Quadríceps e glúteos",
+     "weekday": 4,
+     "foco": "Pernas",
+     "itens": [
+      {
+       "exId": "agachamento-hack",
+       "series": 4,
+       "reps": "10"
+      },
+      {
+       "exId": "leg-press",
+       "series": 4,
+       "reps": "12"
+      },
+      {
+       "exId": "afundo-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "cadeira-extensora",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "panturrilha-leg",
+       "series": 4,
+       "reps": "15"
+      }
+     ]
+    },
+    {
+     "nome": "Glúteos e core",
+     "weekday": 5,
+     "foco": "Glúteos e abdômen",
+     "itens": [
+      {
+       "exId": "elevacao-pelvica",
+       "series": 4,
+       "reps": "12"
+      },
+      {
+       "exId": "agachamento-goblet",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "abducao-maq",
+       "series": 4,
+       "reps": "15"
+      },
+      {
+       "exId": "hiperextensao",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "elevacao-pernas",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "prancha",
+       "series": 3,
+       "reps": "40 s"
+      }
+     ]
+    }
+   ],
+   "objetivos": [
+    "gluteos",
+    "hipertrofia",
+    "emagrecer"
+   ],
+   "local": "academia"
+  },
+  {
+   "id": "casa-halteres-3x",
+   "nome": "Em casa com halteres",
+   "nivel": "Iniciante",
+   "diasSemana": 3,
+   "objetivo": "Treinar sem academia",
+   "equipamento": "Halteres e peso do corpo",
+   "descricao": "Corpo inteiro com halteres e peso do corpo, para dias em que você não vai à academia.",
+   "premium": true,
+   "dias": [
+    {
+     "nome": "Treino A",
+     "weekday": 1,
+     "foco": "Corpo inteiro",
+     "itens": [
+      {
+       "exId": "agachamento-goblet",
+       "series": 4,
+       "reps": "12"
+      },
+      {
+       "exId": "flexao",
+       "series": 3,
+       "reps": "10-15"
+      },
+      {
+       "exId": "remada-unilateral-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "desenv-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "prancha",
+       "series": 3,
+       "reps": "30 s"
+      }
+     ]
+    },
+    {
+     "nome": "Treino B",
+     "weekday": 3,
+     "foco": "Corpo inteiro",
+     "itens": [
+      {
+       "exId": "afundo-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "supino-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "rdl-barra",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "elev-lateral-halter",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "rosca-alternada-halter",
+       "series": 2,
+       "reps": "12"
+      },
+      {
+       "exId": "triceps-coice",
+       "series": 2,
+       "reps": "12"
+      }
+     ]
+    },
+    {
+     "nome": "Treino C",
+     "weekday": 5,
+     "foco": "Corpo inteiro",
+     "itens": [
+      {
+       "exId": "agachamento-goblet",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "crucifixo-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "remada-unilateral-halter",
+       "series": 3,
+       "reps": "12"
+      },
+      {
+       "exId": "elevacao-pelvica",
+       "series": 3,
+       "reps": "15"
+      },
+      {
+       "exId": "abdominal-supra",
+       "series": 3,
+       "reps": "20"
+      }
+     ]
+    }
+   ],
+   "objetivos": [
+    "saude",
+    "emagrecer",
+    "hipertrofia"
+   ],
+   "local": "casa"
+  }
+ ]
+}
